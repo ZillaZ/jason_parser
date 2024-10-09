@@ -1,0 +1,8 @@
+WHITESPACE = _{" " | NEWLINE }
+document = _{ SOI ~ "{" ~ expr* ~ "}" ~ EOI }
+expr = { string ~ ":" ~ value ~ ","? }
+string = { "\"" ~ (ASCII_ALPHANUMERIC | "_" | ":")* ~ "\"" }
+value = { string | list | object | number }
+number = { ASCII_DIGIT+ }
+list = { "[" ~ (value ~ ","?)* ~  "]" }
+object = { "{" ~ expr+ ~ "}" }
